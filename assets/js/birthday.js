@@ -6,13 +6,13 @@ let highestZ = 1;
 papers.forEach((paper, index) => {
   setTimeout(() => {
     // Dragging images from the left to right
-    paper.style.transform = `translate(${(index * 160)}px, 0) rotate(0deg)`; // Align images horizontally
+    paper.style.transform = `translate(${(index * 90)}px, 0) rotate(0deg)`; // Align images horizontally
     paper.style.zIndex = highestZ++;
     paper.style.opacity = 1;
     
     // Final position is at the top of the screen
     setTimeout(() => {
-      paper.style.transform = `translate(${index * 160}px, 20px) rotate(0deg)`; // Settle at top position
+      paper.style.transform = `translate(${index * 90}px, 20px) rotate(0deg)`; // Settle at top position
     }, 3000);
   }, index * 1000); // Stagger animations
 });
