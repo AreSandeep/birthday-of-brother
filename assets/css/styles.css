@@ -34,7 +34,7 @@ body {
   cursor: pointer;
   z-index: 1;
   transition: transform 1s ease, opacity 1s ease;
-  width: 200px; /* Increased size for images */
+  width: 150px; /* Adjusted image size */
   height: auto;
 }
 
@@ -44,7 +44,7 @@ body {
 }
 
 .paper p {
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Comic Sans MS', sans-serif;
   text-align: center;
 }
