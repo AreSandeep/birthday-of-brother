@@ -6,7 +6,7 @@ let highestZ = 1;
 papers.forEach((paper, index) => {
   setTimeout(() => {
     // Dragging images from the left to right
-    paper.style.transform = `translate(${(index * 90)}px, 0) rotate(0deg)`; // Align images horizontally
+    paper.style.transform = `translate(${(index * 90)}px) rotate(0deg)`; // Align images horizontally
     paper.style.zIndex = highestZ++;
     paper.style.opacity = 1;
     
