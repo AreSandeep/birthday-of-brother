@@ -1,0 +1,90 @@
+/* Background for Romantic Theme */
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(to right, #f9b9d1, #f6c6d4); /* Soft romantic gradient */
+    font-family: 'Arial', sans-serif;
+    color: #ff4d4d;
+    position: relative;
+  }
+  
+  /* Paper elements */
+  .paper {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+  
+  .paper img {
+    max-width: 200px; /* Slightly increased image size */
+    max-height: 200px;
+    border-radius: 10px;
+  }
+  
+  .paper p {
+    font-size: 18px; /* Adjusted font size for balance */
+    font-family: 'Comic Sans MS', sans-serif;
+    text-align: center;
+  }
+  
+  #birthday-box {
+    background-color: #ff99cc;
+    width: auto;
+    padding: 15px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0; /* Hidden initially */
+    animation: openBox 3s ease-in-out forwards;
+    z-index: 2;
+  }
+  
+  @keyframes openBox {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  h1 {
+    font-size: 50px;
+    color: #ff4d4d; /* Red for romance */
+    font-weight: bold;
+    animation: colorChange 5s infinite;
+  }
+  
+  @keyframes colorChange {
+    0% {
+      color: #ff1493; /* Pink */
+    }
+    25% {
+      color: #ff6347; /* Coral */
+    }
+    50% {
+      color: #ff1493; /* Pink */
+    }
+    75% {
+      color: #ff8c00; /* Orange */
+    }
+    100% {
+      color: #ff1493; /* Pink */
+    }
+  }
+  
