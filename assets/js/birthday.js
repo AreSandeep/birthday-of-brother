@@ -5,29 +5,20 @@ let zIndex = 1;
 // Animate each paper
 papers.forEach((paper, index) => {
   setTimeout(() => {
-    paper.style.transform = `translateX(${index * 180}px)`; // Reduced spacing
+    // Move papers from leftmost to rightmost
+    paper.style.transform = `translateX(${index * 130}px)`; // Adjusted spacing for smaller cards
     paper.style.opacity = 1;
     paper.style.zIndex = zIndex++;
 
-    // After animation, place it neatly on the screen
+    // After animation, settle the card
     setTimeout(() => {
-      paper.style.transform = `translateX(${index * 180}px) translateY(-20px)`; // Reduced spacing
+      paper.style.transform = `translateX(${index * 130}px) translateY(-10px)`;
     }, 3000);
   }, index * 1000); // Staggered animation
 });
 
-// Background audio handling
+// Play background audio automatically
 const audio = document.getElementById('background-music');
-const playButton = document.getElementById('play-audio');
-
-// Try to autoplay audio
-audio.play().catch(() => {
-  // If autoplay fails, show the play button
-  playButton.style.display = 'block';
-});
-
-// Play audio on button click
-playButton.addEventListener('click', () => {
-  audio.play();
-  playButton.style.display = 'none'; // Hide play button after audio starts
+audio.play().catch((error) => {
+  console.error("Audio autoplay failed:", error);
 });

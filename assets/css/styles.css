@@ -59,51 +59,36 @@ h1 {
 /* Image Cards */
 .container {
   display: flex;
-  gap: 8px; /* Further reduced spacing between cards */
+  gap: 6px; /* Reduced spacing between cards */
   position: absolute;
   bottom: 10%;
   left: 0;
   right: 0;
-  justify-content: center;
+  justify-content: flex-start; /* Start animation from leftmost */
 }
 
 .paper {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 10px; /* Reduced padding */
-  border-radius: 15px;
+  padding: 5px; /* Reduced padding */
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.5s, opacity 0.5s;
-  width: 140px; /* Smaller card width */
-  height: 200px; /* Smaller card height */
+  width: 100px; /* Smaller card width */
+  height: 150px; /* Smaller card height */
   text-align: center;
   opacity: 0;
 }
 
 .paper img {
   width: 100%; /* Automatically adjust to card width */
-  height: 120px; /* Reduced image height */
-  border-radius: 10px;
+  height: 90px; /* Reduced image height */
+  border-radius: 5px;
   object-fit: cover; /* Ensure the image fits well */
 }
 
 .paper p {
-  font-size: 14px; /* Reduced font size for better fit */
+  font-size: 12px; /* Smaller font size */
   margin-top: 5px;
   color: #ff4d4d;
   font-family: 'Comic Sans MS', sans-serif;
-}
-
-/* Play Button for Audio */
-#play-audio {
-  display: none; /* Hidden by default */
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 10px 20px;
-  background-color: #ff1493;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
 }
