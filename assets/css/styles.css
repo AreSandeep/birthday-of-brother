@@ -1,4 +1,3 @@
-
 /* Background for Romantic Theme */
 body {
   height: 100vh;
@@ -52,7 +51,7 @@ body {
 /* Paper elements */
 .paper {
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
+  padding: 15px; /* Reduced padding */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   position: absolute;
@@ -61,15 +60,23 @@ body {
 }
 
 .paper.heart {
-  width: 150px;
-  height: 150px;
+  width: 100px; /* Reduced size */
+  height: 100px;
   background: #ff8c00;
   border-radius: 50%;
 }
 
 .paper.image {
-  max-width: 300px;
+  max-width: 200px; /* Reduced container width */
   background: #f0e68c;
+  padding: 10px; /* Adjust padding for proportion */
+}
+
+.paper img {
+  width: 80px; /* Reduced image size */
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover; /* Ensures the image fills the space proportionally */
 }
 
 img {
