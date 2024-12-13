@@ -1,3 +1,4 @@
+
 // Ensure audio plays only when an image is clicked
 const audio = document.getElementById('background-music');
 const images = document.querySelectorAll('.paper');

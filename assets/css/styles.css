@@ -51,36 +51,29 @@ body {
 /* Paper elements */
 .paper {
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 15px;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   position: absolute;
-  cursor: grab;
+  cursor: pointer;
   z-index: 1;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Start from the center */
 }
 
 .paper.heart {
-  width: 100px; /* Reduced size */
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background: #ff8c00;
   border-radius: 50%;
 }
 
 .paper.image {
-  width: 200px; /* Adjust container width */
-  height: auto;
+  max-width: 300px;
   background: #f0e68c;
-  padding: 10px;
 }
 
-.paper img {
-  width: 150px; /* Reduced image size */
-  height: auto;
+img {
+  max-width: 100%;
   border-radius: 10px;
-  object-fit: cover; /* Ensures the image fills the space proportionally */
 }
 
 p {
