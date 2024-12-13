@@ -1,4 +1,4 @@
-/* Romantic Theme */
+/* Background for Romantic Theme */
 body {
   height: 100vh;
   margin: 0;
@@ -6,89 +6,140 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(to right, #f9b9d1, #f6c6d4); /* Romantic gradient */
+  background: linear-gradient(to right, #f9b9d1, #f6c6d4); /* Soft romantic gradient */
   font-family: 'Arial', sans-serif;
   color: #ff4d4d;
   position: relative;
 }
 
-/* Birthday Box */
+/* Floating flower particles */
+@keyframes floatFlowers {
+  0% {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+.flower {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 105, 180, 0.7); /* Light pink */
+  border-radius: 50%;
+  animation: floatFlowers 8s linear infinite;
+  z-index: 1;
+}
+
+.flower:nth-child(odd) {
+  animation-duration: 10s;
+}
+
+.flower:nth-child(even) {
+  animation-duration: 12s;
+}
+
+.flower:nth-child(3) {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 182, 193, 0.7); /* Lighter pink */
+}
+
+/* Paper elements */
+.paper {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.paper.heart {
+  width: 150px;
+  height: 150px;
+  background: #ff8c00;
+  border-radius: 50%;
+}
+
+.paper.image {
+  max-width: 300px;
+  background: #f0e68c;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+p {
+  font-size: 20px;
+  font-family: 'Comic Sans MS', sans-serif;
+  text-align: center;
+}
+
+#drag-instruction {
+  font-size: 24px;
+  font-family: 'Comic Sans MS', sans-serif;
+  text-align: center;
+  font-weight: bold;
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
 #birthday-box {
   background-color: #ff99cc;
+  width: auto; /* Adjust width dynamically to fit text */
   padding: 15px 30px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 5%;
-  left: 50%;
+  top: 2%; /* Position closer to the top */
+  left: 30%; /* Center horizontally */
   transform: translateX(-50%);
-  opacity: 0;
-  animation: fadeIn 2s ease-in-out forwards;
+  opacity: 0; /* Animation starts hidden */
+  animation: openBox 3s ease-in-out forwards;
+  z-index: 2;
 }
 
-@keyframes fadeIn {
+@keyframes openBox {
   0% {
+    transform: scale(0);
     opacity: 0;
-    transform: scale(0.8);
   }
   100% {
-    opacity: 1;
     transform: scale(1);
+    opacity: 1;
   }
 }
 
 h1 {
-  font-size: 40px; /* Reduced title font size */
-  color: #ff4d4d;
+  font-size: 50px;
+  color: #ff4d4d; /* Red for romance */
+  font-weight: bold;
   animation: colorChange 5s infinite;
 }
 
 @keyframes colorChange {
   0% {
-    color: #ff1493;
+    color: #ff1493; /* Pink */
+  }
+  25% {
+    color: #ff6347; /* Coral */
   }
   50% {
-    color: #ff8c00;
+    color: #ff1493; /* Pink */
+  }
+  75% {
+    color: #ff8c00; /* Orange */
   }
   100% {
-    color: #ff1493;
+    color: #ff1493; /* Pink */
   }
-}
-
-/* Image Cards */
-.container {
-  display: flex;
-  gap: 6px; /* Reduced spacing between cards */
-  position: absolute;
-  bottom: 10%;
-  left: 0;
-  right: 0;
-  justify-content: flex-start; /* Start animation from leftmost */
-}
-
-.paper {
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 5px; /* Reduced padding */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.5s, opacity 0.5s;
-  width: 100px; /* Smaller card width */
-  height: 150px; /* Smaller card height */
-  text-align: center;
-  opacity: 0;
-}
-
-.paper img {
-  width: 100%; /* Automatically adjust to card width */
-  height: 90px; /* Reduced image height */
-  border-radius: 5px;
-  object-fit: cover; /* Ensure the image fits well */
-}
-
-.paper p {
-  font-size: 12px; /* Smaller font size */
-  margin-top: 5px;
-  color: #ff4d4d;
-  font-family: 'Comic Sans MS', sans-serif;
 }
