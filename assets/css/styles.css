@@ -39,7 +39,7 @@ body {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 40px; /* Reduced title font size */
   color: #ff4d4d;
   animation: colorChange 5s infinite;
 }
@@ -59,7 +59,7 @@ h1 {
 /* Image Cards */
 .container {
   display: flex;
-  gap: 10px; /* Reduced spacing between cards */
+  gap: 8px; /* Further reduced spacing between cards */
   position: absolute;
   bottom: 10%;
   left: 0;
@@ -69,26 +69,26 @@ h1 {
 
 .paper {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 15px;
+  padding: 10px; /* Reduced padding */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.5s, opacity 0.5s;
-  width: 220px; /* Increased card width */
-  height: 320px; /* Increased card height */
+  width: 140px; /* Smaller card width */
+  height: 200px; /* Smaller card height */
   text-align: center;
   opacity: 0;
 }
 
 .paper img {
-  width: 100%;
-  height: 220px; /* Increased image height */
+  width: 100%; /* Automatically adjust to card width */
+  height: 120px; /* Reduced image height */
   border-radius: 10px;
-  object-fit: cover;
+  object-fit: cover; /* Ensure the image fits well */
 }
 
 .paper p {
-  font-size: 18px;
-  margin-top: 10px;
+  font-size: 14px; /* Reduced font size for better fit */
+  margin-top: 5px;
   color: #ff4d4d;
   font-family: 'Comic Sans MS', sans-serif;
 }
@@ -105,5 +105,5 @@ h1 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
 }
