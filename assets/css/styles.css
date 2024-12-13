@@ -67,19 +67,19 @@ body {
 }
 
 .paper.image {
-  max-width: 300px;
+  max-width: 50px;
   background: #f0e68c;
 }
 
-.paper.image img {
-  width: 100px; /* Smaller width */
-  height: 100px; /* Smaller height */
+.paper img {
+  width: 30px; /* Resize images to be very small */
+  height: 300px;
   border-radius: 10px;
-  object-fit: cover; /* Ensure the image fits within the smaller dimensions */
+  object-fit: cover; /* Ensures the image fills the space */
 }
 
 img {
-  max-width: 100%;
+  max-width: 40%;
   border-radius: 10px;
 }
 
