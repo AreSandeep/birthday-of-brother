@@ -72,10 +72,10 @@ body {
 }
 
 .paper img {
-  width: 100px; /* Resize images to be very small */
+  width: 100px; /* Resized images to fit fully in the box */
   height: 100px;
   border-radius: 10px;
-  object-fit: cover; /* Ensures the image fills the space */
+  object-fit: contain; /* Ensures the full image fits within the given space */
 }
 
 img {
