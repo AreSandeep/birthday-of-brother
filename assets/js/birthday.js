@@ -49,12 +49,13 @@ class Paper {
     this.prevTouchX = this.touchStartX;
     this.prevTouchY = this.touchStartY;
 
-    // Play audio on first interaction
+    // Play audio if not already playing
     if (!isPlaying) {
-      audio.play().catch(() => {
+      audio.play().then(() => {
+        isPlaying = true;
+      }).catch(() => {
         console.log('Audio play blocked by browser');
       });
-      isPlaying = true;
     }
   }
 
@@ -131,14 +132,16 @@ setTimeout(function () {
 // Audio button functionality
 const audioButton = document.getElementById('audio-button');
 audioButton.addEventListener('click', () => {
-  if (isPlaying) {
-    audio.pause();
-    audioButton.textContent = "Enable Audio";
-  } else {
-    audio.play().catch(() => {
+  if (!isPlaying) {
+    audio.play().then(() => {
+      isPlaying = true;
+      audioButton.textContent = "Disable Audio";
+    }).catch(() => {
       console.log('Audio play blocked by browser');
     });
-    audioButton.textContent = "Disable Audio";
+  } else {
+    audio.pause();
+    isPlaying = false;
+    audioButton.textContent = "Enable Audio";
   }
-  isPlaying = !isPlaying;
 });
