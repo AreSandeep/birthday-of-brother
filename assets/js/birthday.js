@@ -1,7 +1,17 @@
-// Automatically play audio when the page loads
+// Audio setup
 const audio = document.getElementById('background-music');
+const audioButton = document.getElementById('audio-button');
+
+// Handle autoplay issues
 audio.play().catch(() => {
   console.log("Audio autoplay blocked by browser");
+  audioButton.style.display = "block"; // Show the button if autoplay fails
+});
+
+// Play audio on button click
+audioButton.addEventListener('click', () => {
+  audio.play();
+  audioButton.style.display = "none"; // Hide the button once audio starts playing
 });
 
 // Dragging functionality
