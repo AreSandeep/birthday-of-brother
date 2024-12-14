@@ -1,7 +1,7 @@
-// Original Audio Controls
 const audio = document.getElementById('background-music');
 const audioButton = document.getElementById('audio-button');
 
+// Ensure the audio starts/stops with button clicks
 audioButton.style.display = 'block'; // Make the button visible
 let isPlaying = false; // Track audio state
 
@@ -18,6 +18,7 @@ audioButton.addEventListener('click', () => {
   isPlaying = !isPlaying;
 });
 
+// Update audio state on autoplay failure
 audio.addEventListener('play', () => {
   isPlaying = true;
   audioButton.textContent = 'Pause Audio ⏸️';
@@ -32,18 +33,6 @@ audio.addEventListener('pause', () => {
 const papers = document.querySelectorAll('.paper');
 let zIndex = 1;
 
-// Toggle for manual drag
-const enableDragButton = document.createElement('button');
-enableDragButton.textContent = 'Enable Manual Drag';
-document.body.appendChild(enableDragButton);
-let isManualDragEnabled = false;
-
-// Toggle drag mode
-enableDragButton.addEventListener('click', () => {
-  isManualDragEnabled = !isManualDragEnabled;
-  enableDragButton.textContent = isManualDragEnabled ? 'Disable Manual Drag' : 'Enable Manual Drag';
-});
-
 // Position and animate images from the center to leftmost to rightmost
 papers.forEach((paper, index) => {
   paper.style.left = '50%'; // Start from center
@@ -57,17 +46,18 @@ papers.forEach((paper, index) => {
     paper.style.top = `${index % 2 === 0 ? '40%' : '60%'}`; // Alternate vertical position
   }, 500);
 
-  // Enable dragging functionality
-  paper.addEventListener('mousedown', (e) => {
-    if (isManualDragEnabled) startDrag(e, paper);
-  });
-  paper.addEventListener('mousemove', (e) => {
-    if (isManualDragEnabled) drag(e, paper);
-  });
-  paper.addEventListener('mouseup', () => {
-    if (isManualDragEnabled) stopDrag(paper);
-  });
+  // Enable dragging functionality after animation completes
+  setTimeout(() => {
+    enableDragging(paper);
+  }, 3500 + index * 500); // Wait for animation to finish
 });
+
+// Enable dragging functionality
+function enableDragging(paper) {
+  paper.addEventListener('mousedown', (e) => startDrag(e, paper));
+  paper.addEventListener('mousemove', (e) => drag(e, paper));
+  paper.addEventListener('mouseup', () => stopDrag(paper));
+}
 
 function startDrag(e, paper) {
   paper.dataset.dragging = "true";
