@@ -1,7 +1,7 @@
+// Original Audio Controls
 const audio = document.getElementById('background-music');
 const audioButton = document.getElementById('audio-button');
 
-// Ensure the audio starts/stops with button clicks
 audioButton.style.display = 'block'; // Make the button visible
 let isPlaying = false; // Track audio state
 
@@ -18,7 +18,6 @@ audioButton.addEventListener('click', () => {
   isPlaying = !isPlaying;
 });
 
-// Update audio state on autoplay failure
 audio.addEventListener('play', () => {
   isPlaying = true;
   audioButton.textContent = 'Pause Audio ⏸️';
@@ -29,17 +28,28 @@ audio.addEventListener('pause', () => {
   audioButton.textContent = 'Play Audio 🎵';
 });
 
-
 // Dragging functionality
 const papers = document.querySelectorAll('.paper');
 let zIndex = 1;
+
+// Toggle for manual drag
+const enableDragButton = document.createElement('button');
+enableDragButton.textContent = 'Enable Manual Drag';
+document.body.appendChild(enableDragButton);
+let isManualDragEnabled = false;
+
+// Toggle drag mode
+enableDragButton.addEventListener('click', () => {
+  isManualDragEnabled = !isManualDragEnabled;
+  enableDragButton.textContent = isManualDragEnabled ? 'Disable Manual Drag' : 'Enable Manual Drag';
+});
 
 // Position and animate images from the center to leftmost to rightmost
 papers.forEach((paper, index) => {
   paper.style.left = '50%'; // Start from center
   paper.style.top = '50%'; // Start from center
   paper.style.transform = 'translate(-50%, -50%)';
-  
+
   setTimeout(() => {
     paper.style.opacity = '1';
     paper.style.transition = `all 3s ease-in-out ${index * 0.5}s`; // Staggered animation
@@ -48,9 +58,15 @@ papers.forEach((paper, index) => {
   }, 500);
 
   // Enable dragging functionality
-  paper.addEventListener('mousedown', (e) => startDrag(e, paper));
-  paper.addEventListener('mousemove', (e) => drag(e, paper));
-  paper.addEventListener('mouseup', () => stopDrag(paper));
+  paper.addEventListener('mousedown', (e) => {
+    if (isManualDragEnabled) startDrag(e, paper);
+  });
+  paper.addEventListener('mousemove', (e) => {
+    if (isManualDragEnabled) drag(e, paper);
+  });
+  paper.addEventListener('mouseup', () => {
+    if (isManualDragEnabled) stopDrag(paper);
+  });
 });
 
 function startDrag(e, paper) {
