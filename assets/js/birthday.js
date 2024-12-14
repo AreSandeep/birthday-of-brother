@@ -20,9 +20,16 @@ papers.forEach((paper, index) => {
 
   // Enable dragging functionality after animation completes
   setTimeout(() => {
+    clearTransform(paper); // Clear interfering styles after animation
     enableDragging(paper);
   }, 3500 + index * 500); // Wait for animation to finish
 });
+
+// Clear `transform` and set absolute positioning for smooth dragging
+function clearTransform(paper) {
+  paper.style.transform = ''; // Remove transform
+  paper.style.position = 'absolute'; // Ensure absolute positioning
+}
 
 // Enable dragging functionality
 function enableDragging(paper) {
@@ -53,7 +60,6 @@ function drag(e, paper) {
   if (paper.dataset.dragging === "true") {
     paper.style.left = `${e.clientX - paper.dataset.offsetX}px`;
     paper.style.top = `${e.clientY - paper.dataset.offsetY}px`;
-    paper.style.position = 'absolute';
   }
 }
 
