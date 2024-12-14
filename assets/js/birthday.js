@@ -127,3 +127,18 @@ setTimeout(function () {
   const dragInstruction = document.getElementById('drag-instruction');
   dragInstruction.style.opacity = 1;
 }, 1000);
+
+// Audio button functionality
+const audioButton = document.getElementById('audio-button');
+audioButton.addEventListener('click', () => {
+  if (isPlaying) {
+    audio.pause();
+    audioButton.textContent = "Enable Audio";
+  } else {
+    audio.play().catch(() => {
+      console.log('Audio play blocked by browser');
+    });
+    audioButton.textContent = "Disable Audio";
+  }
+  isPlaying = !isPlaying;
+});
