@@ -25,12 +25,15 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   text-align: center;
-  max-width: 150px;
+  max-width: 200px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
 }
 
 .paper img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 10px;
 }

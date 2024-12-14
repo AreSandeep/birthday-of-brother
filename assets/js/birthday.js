@@ -1,6 +1,7 @@
-// Ensure audio plays only when an image is clicked
 const audio = document.getElementById('background-music');
 const images = document.querySelectorAll('.paper img');
+
+// Ensure audio plays only when an image is clicked
 images.forEach(image => {
   image.addEventListener('click', () => {
     if (audio.paused) {
@@ -20,7 +21,19 @@ playButton.addEventListener('click', () => {
 const papers = document.querySelectorAll('.paper');
 let zIndex = 1;
 
-papers.forEach(paper => {
+papers.forEach((paper, index) => {
+  // Initial hide and set position
+  paper.style.opacity = '0';
+  paper.style.left = `-${200 + index * 50}px`;
+  paper.style.top = '50%';
+
+  setTimeout(() => {
+    paper.style.opacity = '1';
+    paper.style.transition = `all 2s ease-in-out`;
+    paper.style.left = `${50 + index * 100}px`;
+  }, index * 500);
+
+  // Enable dragging
   paper.addEventListener('mousedown', (e) => startDrag(e, paper));
   paper.addEventListener('mousemove', (e) => drag(e, paper));
   paper.addEventListener('mouseup', () => stopDrag(paper));
