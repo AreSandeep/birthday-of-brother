@@ -10,6 +10,7 @@ papers.forEach((paper, index) => {
   paper.style.left = '50%'; // Start from center
   paper.style.top = '50%'; // Start from center
   paper.style.transform = 'translate(-50%, -50%)';
+  paper.style.cursor = 'default'; // Default cursor during animation
 
   setTimeout(() => {
     paper.style.opacity = '1';
@@ -21,7 +22,7 @@ papers.forEach((paper, index) => {
   // Enable dragging functionality after animation completes
   setTimeout(() => {
     clearTransform(paper); // Clear interfering styles after animation
-    enableDragging(paper);
+    enableDragging(paper); // Enable drag functionality
   }, 3500 + index * 500); // Wait for animation to finish
 });
 
@@ -29,6 +30,7 @@ papers.forEach((paper, index) => {
 function clearTransform(paper) {
   paper.style.transform = ''; // Remove transform
   paper.style.position = 'absolute'; // Ensure absolute positioning
+  paper.style.cursor = 'grab'; // Set cursor to indicate draggable state
 }
 
 // Enable dragging functionality
@@ -47,6 +49,7 @@ function enableDragging(paper) {
 
   paper.addEventListener('mousemove', (e) => drag(e, paper));
   paper.addEventListener('mouseup', () => stopDrag(paper));
+  paper.addEventListener('mouseleave', () => stopDrag(paper)); // Stop dragging if the mouse leaves
 }
 
 function startDrag(e, paper) {
@@ -54,6 +57,7 @@ function startDrag(e, paper) {
   paper.style.zIndex = zIndex++;
   paper.dataset.offsetX = e.clientX - paper.offsetLeft;
   paper.dataset.offsetY = e.clientY - paper.offsetTop;
+  paper.style.cursor = 'grabbing'; // Change cursor to grabbing during drag
 }
 
 function drag(e, paper) {
@@ -65,4 +69,5 @@ function drag(e, paper) {
 
 function stopDrag(paper) {
   paper.dataset.dragging = "false";
+  paper.style.cursor = 'grab'; // Revert cursor to grab after drag ends
 }
