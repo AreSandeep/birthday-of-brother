@@ -19,40 +19,42 @@ papers.forEach((paper, index) => {
     paper.style.top = `${index % 2 === 0 ? '40%' : '60%'}`; // Alternate vertical position
   }, 500);
 
-  // Enable dragging functionality after animation completes
+  // Enable double-click to activate dragging
   setTimeout(() => {
-    enableDragging(paper); // Enable drag functionality for each paper
+    enableDoubleClickToDrag(paper);
   }, 3500 + index * 500); // Wait for animation to finish
 });
 
-// Enable dragging functionality
-function enableDragging(paper) {
-  paper.style.position = 'absolute'; // Ensure absolute positioning for dragging
-  paper.style.cursor = 'grab'; // Change cursor to indicate draggable state
+// Enable double-click to activate dragging
+function enableDoubleClickToDrag(paper) {
+  paper.addEventListener('dblclick', () => {
+    paper.dataset.draggable = "true"; // Mark paper as draggable
+    paper.style.cursor = 'grab'; // Change cursor to indicate draggable state
 
-  paper.addEventListener('mousedown', (e) => {
-    startDrag(e, paper);
-
-    // Play audio on first drag
+    // Play audio on first drag activation
     if (!isPlaying) {
       audio.play().catch(() => {
         console.log('Audio play blocked by browser');
       });
       isPlaying = true;
     }
-  });
 
-  paper.addEventListener('mousemove', (e) => drag(e, paper));
-  paper.addEventListener('mouseup', () => stopDrag(paper));
-  paper.addEventListener('mouseleave', () => stopDrag(paper)); // Stop dragging if the mouse leaves
+    // Add drag events
+    paper.addEventListener('mousedown', (e) => startDrag(e, paper));
+    paper.addEventListener('mousemove', (e) => drag(e, paper));
+    paper.addEventListener('mouseup', () => stopDrag(paper));
+    paper.addEventListener('mouseleave', () => stopDrag(paper)); // Stop dragging if the mouse leaves
+  });
 }
 
 function startDrag(e, paper) {
-  paper.dataset.dragging = "true";
-  paper.style.zIndex = zIndex++;
-  paper.dataset.offsetX = e.clientX - paper.offsetLeft;
-  paper.dataset.offsetY = e.clientY - paper.offsetTop;
-  paper.style.cursor = 'grabbing'; // Change cursor to grabbing during drag
+  if (paper.dataset.draggable === "true") {
+    paper.dataset.dragging = "true";
+    paper.style.zIndex = zIndex++;
+    paper.dataset.offsetX = e.clientX - paper.offsetLeft;
+    paper.dataset.offsetY = e.clientY - paper.offsetTop;
+    paper.style.cursor = 'grabbing'; // Change cursor to grabbing during drag
+  }
 }
 
 function drag(e, paper) {
@@ -64,5 +66,9 @@ function drag(e, paper) {
 
 function stopDrag(paper) {
   paper.dataset.dragging = "false";
-  paper.style.cursor = 'grab'; // Revert cursor to grab after drag ends
+  if (paper.dataset.draggable === "true") {
+    paper.style.cursor = 'grab'; // Revert cursor to grab after drag ends
+  } else {
+    paper.style.cursor = 'default';
+  }
 }
