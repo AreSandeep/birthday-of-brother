@@ -1,10 +1,34 @@
-// Automatically play audio when the page loads
 const audio = document.getElementById('background-music');
 const audioButton = document.getElementById('audio-button');
 
-audio.play().catch(() => {
-  console.log("Audio autoplay blocked by browser");
+// Ensure the audio starts/stops with button clicks
+audioButton.style.display = 'block'; // Make the button visible
+let isPlaying = false; // Track audio state
+
+audioButton.addEventListener('click', () => {
+  if (isPlaying) {
+    audio.pause();
+    audioButton.textContent = 'Play Audio 🎵';
+  } else {
+    audio.play().catch(() => {
+      console.log('Audio play blocked by browser');
+    });
+    audioButton.textContent = 'Pause Audio ⏸️';
+  }
+  isPlaying = !isPlaying;
 });
+
+// Update audio state on autoplay failure
+audio.addEventListener('play', () => {
+  isPlaying = true;
+  audioButton.textContent = 'Pause Audio ⏸️';
+});
+
+audio.addEventListener('pause', () => {
+  isPlaying = false;
+  audioButton.textContent = 'Play Audio 🎵';
+});
+
 
 // Dragging functionality
 const papers = document.querySelectorAll('.paper');
