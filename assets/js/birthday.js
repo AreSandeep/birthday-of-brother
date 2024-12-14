@@ -135,13 +135,13 @@ audioButton.addEventListener('click', () => {
   if (!isPlaying) {
     audio.play().then(() => {
       isPlaying = true;
-      audioButton.textContent = "Disable Audio";
+      audioButton.textContent = "PLAY SONG";
     }).catch(() => {
       console.log('Audio play blocked by browser');
     });
   } else {
     audio.pause();
     isPlaying = false;
-    audioButton.textContent = "Enable Audio";
+    audioButton.textContent = "PLAY SONG";
   }
 });
