@@ -1,33 +1,5 @@
 const audio = document.getElementById('background-music');
-const audioButton = document.getElementById('audio-button');
-
-// Ensure the audio starts/stops with button clicks
-audioButton.style.display = 'block'; // Make the button visible
 let isPlaying = false; // Track audio state
-
-audioButton.addEventListener('click', () => {
-  if (isPlaying) {
-    audio.pause();
-    audioButton.textContent = 'Play Audio 🎵';
-  } else {
-    audio.play().catch(() => {
-      console.log('Audio play blocked by browser');
-    });
-    audioButton.textContent = 'Pause Audio ⏸️';
-  }
-  isPlaying = !isPlaying;
-});
-
-// Update audio state on autoplay failure
-audio.addEventListener('play', () => {
-  isPlaying = true;
-  audioButton.textContent = 'Pause Audio ⏸️';
-});
-
-audio.addEventListener('pause', () => {
-  isPlaying = false;
-  audioButton.textContent = 'Play Audio 🎵';
-});
 
 // Dragging functionality
 const papers = document.querySelectorAll('.paper');
@@ -54,7 +26,18 @@ papers.forEach((paper, index) => {
 
 // Enable dragging functionality
 function enableDragging(paper) {
-  paper.addEventListener('mousedown', (e) => startDrag(e, paper));
+  paper.addEventListener('mousedown', (e) => {
+    startDrag(e, paper);
+
+    // Play audio on drag start
+    if (!isPlaying) {
+      audio.play().catch(() => {
+        console.log('Audio play blocked by browser');
+      });
+      isPlaying = true;
+    }
+  });
+
   paper.addEventListener('mousemove', (e) => drag(e, paper));
   paper.addEventListener('mouseup', () => stopDrag(paper));
 }
