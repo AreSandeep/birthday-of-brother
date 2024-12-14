@@ -21,24 +21,19 @@ papers.forEach((paper, index) => {
 
   // Enable dragging functionality after animation completes
   setTimeout(() => {
-    clearTransform(paper); // Clear interfering styles after animation
-    enableDragging(paper); // Enable drag functionality
+    enableDragging(paper); // Enable drag functionality for each paper
   }, 3500 + index * 500); // Wait for animation to finish
 });
 
-// Clear `transform` and set absolute positioning for smooth dragging
-function clearTransform(paper) {
-  paper.style.transform = ''; // Remove transform
-  paper.style.position = 'absolute'; // Ensure absolute positioning
-  paper.style.cursor = 'grab'; // Set cursor to indicate draggable state
-}
-
 // Enable dragging functionality
 function enableDragging(paper) {
+  paper.style.position = 'absolute'; // Ensure absolute positioning for dragging
+  paper.style.cursor = 'grab'; // Change cursor to indicate draggable state
+
   paper.addEventListener('mousedown', (e) => {
     startDrag(e, paper);
 
-    // Play audio on drag start
+    // Play audio on first drag
     if (!isPlaying) {
       audio.play().catch(() => {
         console.log('Audio play blocked by browser');
