@@ -1,5 +1,7 @@
 // Automatically play audio when the page loads
 const audio = document.getElementById('background-music');
+const audioButton = document.getElementById('audio-button');
+
 audio.play().catch(() => {
   console.log("Audio autoplay blocked by browser");
 });
