@@ -1,36 +1,23 @@
+// Play audio automatically when the page loads
 const audio = document.getElementById('background-music');
-const images = document.querySelectorAll('.paper img');
-
-// Ensure audio plays only when an image is clicked
-images.forEach(image => {
-  image.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-    }
-  });
-});
-
-// Play button for mobile if audio doesn't autoplay
-const playButton = document.getElementById('play-audio');
-playButton.addEventListener('click', () => {
-  audio.play();
-  playButton.style.display = 'none'; // Hide the play button after clicking
+audio.play().catch(() => {
+  console.log("Audio autoplay blocked by browser");
 });
 
 // Dragging functionality
 const papers = document.querySelectorAll('.paper');
 let zIndex = 1;
 
+// Initial animation for images
 papers.forEach((paper, index) => {
-  // Initial hide and set position
   paper.style.opacity = '0';
-  paper.style.left = `-${200 + index * 50}px`;
-  paper.style.top = '50%';
+  paper.style.left = `-${200 + index * 50}px`; // Start from off-screen left
+  paper.style.top = `${index % 2 === 0 ? 30 : 70}%`; // Alternate vertical position
 
   setTimeout(() => {
     paper.style.opacity = '1';
     paper.style.transition = `all 2s ease-in-out`;
-    paper.style.left = `${50 + index * 100}px`;
+    paper.style.left = `${50 + index * 200}px`; // Arrange horizontally
   }, index * 500);
 
   // Enable dragging
