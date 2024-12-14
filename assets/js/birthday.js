@@ -1,4 +1,4 @@
-// Play audio automatically when the page loads
+// Automatically play audio when the page loads
 const audio = document.getElementById('background-music');
 audio.play().catch(() => {
   console.log("Audio autoplay blocked by browser");
@@ -8,19 +8,20 @@ audio.play().catch(() => {
 const papers = document.querySelectorAll('.paper');
 let zIndex = 1;
 
-// Initial animation for images
+// Position and animate images from the center to leftmost to rightmost
 papers.forEach((paper, index) => {
-  paper.style.opacity = '0';
-  paper.style.left = `-${200 + index * 50}px`; // Start from off-screen left
-  paper.style.top = `${index % 2 === 0 ? 30 : 70}%`; // Alternate vertical position
-
+  paper.style.left = '50%'; // Start from center
+  paper.style.top = '50%'; // Start from center
+  paper.style.transform = 'translate(-50%, -50%)';
+  
   setTimeout(() => {
     paper.style.opacity = '1';
-    paper.style.transition = `all 2s ease-in-out`;
-    paper.style.left = `${50 + index * 200}px`; // Arrange horizontally
-  }, index * 500);
+    paper.style.transition = `all 3s ease-in-out ${index * 0.5}s`; // Staggered animation
+    paper.style.left = `${10 + index * 15}%`; // Positioning across the screen
+    paper.style.top = `${index % 2 === 0 ? '40%' : '60%'}`; // Alternate vertical position
+  }, 500);
 
-  // Enable dragging
+  // Enable dragging functionality
   paper.addEventListener('mousedown', (e) => startDrag(e, paper));
   paper.addEventListener('mousemove', (e) => drag(e, paper));
   paper.addEventListener('mouseup', () => stopDrag(paper));
